@@ -4,7 +4,7 @@ from bettertutors_sql_models.User import User
 
 user_app = Bottle(catchall=False, autojson=True)
 
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 
 
 @user_app.hook('after_request')
