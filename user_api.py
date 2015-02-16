@@ -4,7 +4,7 @@ from bettertutors_sql_models.User import User
 
 user_app = Bottle(catchall=False, autojson=True)
 
-__version__ = '0.1.0'
+__version__ = '0.2.1'
 
 
 @user_app.hook('after_request')
@@ -12,12 +12,15 @@ def enable_cors():
     response.headers['Access-Control-Allow-Origin'] = '*'
 
 
-@user_app.route('/api/user/signup')  # Not register, so not POST /api/user
+@user_app.route('/api/user/signup', method=['POST'])  # Not register, so not POST /api/user
 def signup():
-    if ['email', 'institute', 'role'] != request.body().keys():
+    if not request.json:
         response.status = 400
         return {'error': 'ValidationError', 'error_message': 'Invalid input'}
-    return {'created': User.create(**request.body())}
+    elif [u'email', u'institute', u'role'] != sorted(request.json.keys()):
+        response.status = 400
+        return {'error': 'ValidationError', 'error_message': 'Invalid input'}
+    return {'created': User.create(**request.json)}
 
 
 if __name__ == '__main__':
