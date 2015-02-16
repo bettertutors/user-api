@@ -4,7 +4,7 @@ from bettertutors_sql_models.User import User
 
 user_app = Bottle(catchall=False, autojson=True)
 
-__version__ = '0.2.3'
+__version__ = '0.2.4'
 
 
 @user_app.hook('after_request')
@@ -14,12 +14,16 @@ def enable_cors():
 
 @user_app.route('/api/user/signup', method=['POST'])  # Not register, so not POST /api/user
 def signup():
+    valid_keys = [u'email', u'institute', u'role']
     if not request.json:
         response.status = 400
         return {'error': 'ValidationError', 'error_message': 'Invalid input'}
-    elif [u'email', u'institute', u'role'] != sorted(request.json.keys()):
+    elif valid_keys != sorted(request.json.keys()):
         response.status = 400
-        return {'error': 'ValidationError', 'error_message': 'Invalid input'}
+        return {'error': 'ValidationError', 'error_message': 'Invalid input, wanted: {}'.format(
+            ', '.join(tuple(e for e in valid_keys if e not in request.json.keys()))
+        )}
+    # TODO: Add field validation here or in User model using peewee syntax
     return {'created': User.create(**request.json)}
 
 
