@@ -2,7 +2,7 @@ from unittest import TestCase, main as unittest_main
 
 from webtest import TestApp
 
-from user_api import user_app
+from bettertutors_user_api import user_app
 
 
 class TestRestApi(TestCase):
