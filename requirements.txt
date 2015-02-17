@@ -1,0 +1,1 @@
+https://github.com/bettertutors/sql-models/archive/master.zip#egg=bettertutors_sql_models
