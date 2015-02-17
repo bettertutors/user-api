@@ -1,3 +1,0 @@
-bottle
-webtest
--e git+https://github.com/bettertutors/sql-models#egg=bettertutors_sql_models

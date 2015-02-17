@@ -1,9 +1,17 @@
 from setuptools import setup
 
-__version__ = '0.2.5'
-
-if __name__ == '__main__':  # Version might be imported from setup... if that's possible
+if __name__ == '__main__':
     package_name = 'bettertutors_user_api'
-    setup(name=package_name, version=__version__,
-          author='Samuel Marks', license='MIT', py_modules=[package_name],
-          test_suite='tests')
+    setup(
+        name=package_name,
+        version='0.2.6',
+        author='Samuel Marks',
+        py_modules=[package_name],
+        test_suite='tests',
+        install_requires=[
+            'bottle', 'webtest', 'bettertutors_sql_models'
+        ],
+        dependency_links=[
+            'git+https://github.com/bettertutors/sql-models#egg=bettertutors_sql_models'
+        ]
+    )
