@@ -4,7 +4,7 @@ if __name__ == '__main__':
     package_name = 'bettertutors_user_api'
     setup(
         name=package_name,
-        version='0.2.6',
+        version='0.2.7',
         author='Samuel Marks',
         py_modules=[package_name],
         test_suite='tests',
@@ -12,6 +12,6 @@ if __name__ == '__main__':
             'bottle', 'webtest', 'bettertutors_sql_models'
         ],
         dependency_links=[
-            'git+https://github.com/bettertutors/sql-models#egg=bettertutors_sql_models'
+            'https://github.com/bettertutors/sql-models/archive/master.zip#egg=bettertutors_sql_models'
         ]
     )
