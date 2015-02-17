@@ -1,4 +1,7 @@
-oauth2-bottle-app
-=================
+user-api
+========
 
-REST API frontend for Bottle; utilising the oauth2-rfc6749 library.
+RESTful API frontend for Bottle; exposing user related operations such as:
+
+  - signup
+  - profile management
