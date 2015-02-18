@@ -15,7 +15,7 @@ class TestRestApi(TestCase):
 
     def test_signup(self):
         for user in self.users:
-            print self.app.post('/api/user/signup', user).json
+            self.assertEqual(self.app.post('/api/user/signup', user).status, 200)
 
 
 if __name__ == '__main__':
