@@ -5,7 +5,7 @@ from webtest import TestApp
 from bettertutors_user_api import user_app
 
 
-class TestRestApi(TestCase):
+class TestUserApi(TestCase):
     app = TestApp(user_app)
 
     users = (
