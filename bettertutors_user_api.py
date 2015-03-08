@@ -1,7 +1,9 @@
 from bottle import Bottle, response, request
 
 from bettertutors_sql_models.models.Signup import Signup
+from bettertutors_sql_models.utils import create_tables
 
+create_tables([Signup])
 user_app = Bottle(catchall=False, autojson=True)
 
 
