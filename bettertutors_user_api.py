@@ -1,5 +1,7 @@
 from bottle import Bottle, response, request
 
+from peewee import DatabaseError
+
 from bettertutors_sql_models.models.Signup import Signup
 from bettertutors_sql_models.utils import create_tables
 
@@ -30,6 +32,11 @@ def signup():
     except AssertionError as e:  # TODO: errno.h equivalent
         response.status = 400
         return {'error': 'ValidationError',
+                'error_message': e.message}
+    except DatabaseError as e:  # TODO: Handle each DatabaseError in-turn, globally to api (on a single route)
+        return {'error': (
+            lambda err: err[err.find('.') + 1:])((lambda s: s[s.find("'"):s.rfind("'")])(
+            (lambda error: str(error))(e.__class__))),
                 'error_message': e.message}
 
 
